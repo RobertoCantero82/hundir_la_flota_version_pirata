@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/tu-usuario/tu-repo/main/reports/figures/battleship_banner.png" alt="Battleship Coding The Deep Banner" width="100%">
+  <img src="img/banner.png" width="100%" alt="Hundir la Flota - Edición Vitoria-Gasteiz">
 </p>
 
 <p align="center">
