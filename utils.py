@@ -7,18 +7,18 @@ import numpy as np # librería para gestionar matrices y arrays
 # FUNCIÓN PARA CREAR TABLEROS DE 10X10 CON " " EN CADA CASILLA
 
 def crear_tablero(tamaño:tuple = (10,10)): 
-   tablero = np.full(tamaño, " ") # creo un array de tamaño por defecto 10x10
-   return tablero # devuelvo el tablero
+   tablero = np.full(tamaño, " ") 
+   return tablero 
 
 # FUNCIÓN PARA MOSTRAR LOS TABLEROS EN TERMINAL
 
-def mostrar_tableros(mi_tablero, tablero_rival):  # ← eliminada la línea duplicada de dentro
-   header = "     " + " ".join(str(i) for i in range(10)) # Crea "   0 1 2 3 4 5 6 7 8 9"
+def mostrar_tableros(mi_tablero, tablero_rival):  
+   header = "     " + " ".join(str(i) for i in range(10)) 
    
    print("\n" + " " * 10 + "MI TABLERO")
    print(header)
    for i, fila in enumerate(mi_tablero):
-      print(f"{i:2} | {' '.join(fila)} |") # El :2 asegura que el número ocupe dos espacios
+      print(f"{i:2} | {' '.join(fila)} |") 
    
    print("\n" + " " * 8 + "TABLERO RIVAL")
    print(header)
@@ -30,46 +30,46 @@ def mostrar_tableros(mi_tablero, tablero_rival):  # ← eliminada la línea dupl
 
 def colocar_barcos(mi_tablero):
 
-   esloras = [2, 2, 2, 3, 3, 4] # creo la lista de esloras
-   flota = [] # creo una lista vacía para guardar las posiciones de los barcos
+   esloras = [2, 2, 2, 3, 3, 4] 
+   flota = [] 
 
-   for i in esloras: # itero por los elementos en la lista de esloras
-      barco = clases.Barco(i) # creo el barco de i de eslora
-      colocado = False # por defecto el barco se inicia como no colocado
+   for i in esloras: 
+      barco = clases.Barco(i) 
+      colocado = False 
 
-      while not colocado: # repetimos hasta colocarlo sin solapamientos
-         f = np.random.randint(0, 10) # fila aleatoria entre 0 y 9
-         c = np.random.randint(0, 10) # columna aleatoria entre 0 y 9
-         orientacion = random.choice(["H", "V"]) # orientación aleatoria
+      while not colocado: 
+         f = np.random.randint(0, 10) 
+         c = np.random.randint(0, 10) 
+         orientacion = random.choice(["H", "V"]) 
          provisionales = []
 
-         if orientacion == "H" and c + i <= 10: # compruebo que cabe en horizontal
+         if orientacion == "H" and c + i <= 10: #
             provisionales = [(f, col) for col in range(c, c + i)]
-         elif orientacion == "V" and f + i <= 10: # compruebo que cabe en vertical
+         elif orientacion == "V" and f + i <= 10: 
             provisionales = [(fil, c) for fil in range(f, f + i)]
 
-         if provisionales and all(mi_tablero[pos] == " " for pos in provisionales): # si no hay solapamientos
+         if provisionales and all(mi_tablero[pos] == " " for pos in provisionales): 
             for pos in provisionales:
-               mi_tablero[pos] = "O" # marco la casilla en el tablero
-               barco.coordenadas.append(pos) # guardo la coordenada en el barco
+               mi_tablero[pos] = "O" 
+               barco.coordenadas.append(pos) 
             flota.append(barco)
             colocado = True
 
-   return flota # devuelvo la flota para operar en los disparos
+   return flota 
 
 # FUNCIÓN PARA COLOCAR LOS BARCOS ALEATORIOS DEL RIVAL
 
 def colocar_barcos_rival(tablero_rival):
-   esloras = [2, 2, 2, 3, 3, 4] # creo la lista de esloras
-   flota_rival = []  # creo una lista vacía para guardar las posiciones de los barcos del ordenador
+   esloras = [2, 2, 2, 3, 3, 4] 
+   flota_rival = []  
 
-   for i in esloras: # itero por los elementos en la lista de esloras
-      barco = clases.Barco(i) # creo el barco de i de eslora
-      colocado = False # por defecto el barco se inicia como no colocado
+   for i in esloras: 
+      barco = clases.Barco(i) 
+      colocado = False 
    
-      while not colocado: # entramos en el bucle principal, que se repetirá hasta que tenga el barco aleatorio colocado
-         f = np.random.randint(0,10) # obtengo una fila aleatoria entre 0 y 9
-         c = np.random.randint(0,10) # obtengo una columna aleatoria entre 0 y 9
+      while not colocado: 
+         f = np.random.randint(0,10) 
+         c = np.random.randint(0,10) 
          orientacion = random.choice(["H", "V"])
          provisionales = []
 
@@ -89,27 +89,26 @@ def colocar_barcos_rival(tablero_rival):
 # FUNCIÓN PARA DISPARAR
     
 def disparar(casilla, tablero, flota):
-   f, c = casilla # se piden fila y columna
-   if tablero[f,c] == "O": # si las coordenadas apuntan a una casilla con un "O"
-      tablero[f,c] = "X" # la convierto a "X"
+   f, c = casilla 
+   if tablero[f,c] == "O": 
+      tablero[f,c] = "X" 
 
-      for barco in flota: # se itera la lista de barcos puestos por el jugador
-         if casilla in barco.coordenadas: # si las coordenadas del disparo coinciden con las del tablero
-            barco.recibir_impacto() # se inicia la función de la clase barco de recibir impacto (quita una vida como atributo)
+      for barco in flota: 
+         if casilla in barco.coordenadas: 
+            barco.recibir_impacto() 
 
-            if barco.hundido(): # si las vidas llegan a cero
-               print(f" 🏴‍☠️ ¡La {barco.nombre} está hundida! 🏴‍☠️ ") # se imprime hundido
+            if barco.hundido(): 
+               print(f" 🏴‍☠️ ¡La {barco.nombre} está hundida! 🏴‍☠️ ") 
             else:
-               print("¡Tocado!") # si quedan vidas, se imprime tocado
+               print("¡Tocado!") 
 
-      return "tocado" # hay coincidencia de coordenadas
+      return "tocado" 
    
-   elif tablero[f,c] == " ": # en caso de que se dispare a una casilla en blanco
-      tablero[f,c] = "A" # se cambia su valor por una A
-      print(" 🌀 ¡Agua! 🌀 ") # se imprime el mensaje
-      return "agua" # se devuelve agua
+   elif tablero[f,c] == " ": 
+      tablero[f,c] = "A" 
+      print(" 🌀 ¡Agua! 🌀 ") 
+      return "agua" 
    
    else:
-      print(" 🙄 ¡Inútil! Ya has malgastado pólvora en esa zona. ¿Acaso intentas pescar? 🙄 ") # si el disparo se hace a una casilla diferente de "0" o  de " ", es que
-                                        # ya se había disparado. Con lo que hay que repetir y se imprime el mensaje
-      return "repetido" # devuelve el repetido
+      print(" 🙄 ¡Inútil! Ya has malgastado pólvora en esa zona. ¿Acaso intentas pescar? 🙄 ") 
+      return "repetido" 

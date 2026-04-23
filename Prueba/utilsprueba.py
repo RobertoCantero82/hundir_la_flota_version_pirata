@@ -36,7 +36,7 @@ def colocar_barcos(mi_tablero):
    flota = []
 
    for i in esloras:
-      barco = clasesprueba.Barco(i) # ← corregido: antes ponía "clases.Barco"
+      barco = clasesprueba.Barco(i) 
       colocado = False
 
       while not colocado:
@@ -67,7 +67,7 @@ def colocar_barcos_rival(tablero_rival):
    flota_rival = []
 
    for i in esloras:
-      barco = clasesprueba.Barco(i) # ← corregido: antes ponía "clases.Barco"
+      barco = clasesprueba.Barco(i) 
       colocado = False
    
       while not colocado:
