@@ -42,7 +42,7 @@ disparo = None
 while not jugador_gana and not rival_gana:
 
     print()
-    print("≈" * 25)
+    print("≈" * 40)
     print()
     time.sleep(1)
     utilsprueba.mostrar_tableros(mi_tablero, tablero_rival)
@@ -50,7 +50,7 @@ while not jugador_gana and not rival_gana:
     # ── Turno del jugador ──────────────────────────────────────────────────────
 
     try:
-        accion = input(" 💣 ¡Fuego de cañón! (Fila Columna) o 'Q' para huir como un pollo 🐔 : ").lower()
+        accion = input(" 💣 ¡Dispara el cañón! (Fila Columna) o 'Q' para huir como un pollo 🐔 : ").lower()
         print()
 
         if accion == 'q':
@@ -111,7 +111,9 @@ while not jugador_gana and not rival_gana:
         f_aleatoria = np.random.randint(0, 3)
         c_aleatoria = np.random.randint(0, 3)
         print(f" ☄️ ¡Un proyectil silba hacia ({f_aleatoria}, {c_aleatoria})! ☄️ ")
-        time.sleep(1.2)
+        print()
+        time.sleep(1)
+        
 
         disparo_rival = utilsprueba.disparar((f_aleatoria, c_aleatoria), mi_tablero, flota)
         time.sleep(1)
@@ -128,6 +130,7 @@ while not jugador_gana and not rival_gana:
             c_aleatoria = np.random.randint(0, 3)
             print(f" 🚨 ¡Otro de mis cañonazos vuela hacia ({f_aleatoria}, {c_aleatoria})! 🚨 ")
             time.sleep(1.2)
+            print()
 
             disparo_rival = utilsprueba.disparar((f_aleatoria, c_aleatoria), mi_tablero, flota)
             time.sleep(1)

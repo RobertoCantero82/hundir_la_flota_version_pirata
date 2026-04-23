@@ -13,14 +13,16 @@ def crear_tablero(tamaño:tuple = (3,3)):
 # FUNCIÓN PARA MOSTRAR LOS TABLEROS EN TERMINAL
 
 def mostrar_tableros(mi_tablero, tablero_rival):
-   header = "   " + " ".join(str(i) for i in range(3))
+   header = "     " + " ".join(str(i) for i in range(3))
    
-   print("\n" + " " * 10 + "MI TABLERO")
+   print("\n" "TABLERO SUCIO JUGADOR")
+   print()
    print(header)
    for i, fila in enumerate(mi_tablero):
       print(f"{i:2} | {' '.join(fila)} |")
    
-   print("\n" + " " * 8 + "TABLERO RIVAL")
+   print("\n" + "TABLERO APUESTO PIRATA")
+   print()
    print(header)
    for i, fila in enumerate(tablero_rival):
       print(f"{i:2} | {' '.join(fila)} |")
@@ -100,7 +102,7 @@ def disparar(casilla, tablero, flota):
             barco.recibir_impacto()
 
             if barco.hundido():
-               print(f" 🏴‍☠️ ¡El {barco.nombre} está hundido! 🏴‍☠️ ")
+               print(f" 🏴‍☠️ ¡La {barco.nombre} está hundida! 🏴‍☠️ ")
                print()
             else:
                print(" 🧨 ¡Tocado! 🧨 ")
