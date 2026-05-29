@@ -83,6 +83,28 @@
         to   { transform: scaleX(1); }
       }
 
+      .ship {
+        fill: none;
+        stroke: #00e5a0;
+        stroke-width: 1.5;
+        stroke-linejoin: round;
+        stroke-linecap: round;
+        opacity: 0;
+        animation: shipin 0.5s ease 2.0s forwards;
+      }
+      .ship-line {
+        fill: none;
+        stroke: #00e5a0;
+        stroke-width: 1;
+        stroke-linecap: round;
+        opacity: 0;
+        animation: shipin 0.5s ease 2.0s forwards;
+      }
+      @keyframes shipin {
+        from { opacity: 0; }
+        to   { opacity: 0.5; }
+      }
+
       .bg-rect { fill: #0d1f17; }
     </style>
   </defs>
@@ -94,6 +116,34 @@
   <polyline class="corner" points="656,14 666,14 666,24"/>
   <polyline class="corner" points="24,206 14,206 14,196"/>
   <polyline class="corner" points="656,206 666,206 666,196"/>
+
+  <!-- barco pirata izquierda -->
+  <!-- casco -->
+  <path class="ship" d="M 55,126 L 61,116 L 99,116 L 105,126 Q 80,134 55,126 Z"/>
+  <!-- mástil -->
+  <line class="ship-line" x1="80" y1="116" x2="80" y2="83"/>
+  <!-- vela principal (derecha del mástil) -->
+  <path class="ship-line" d="M 81,87 L 101,110 L 81,116"/>
+  <!-- vela de proa (izquierda, más pequeña) -->
+  <path class="ship-line" d="M 79,92 L 61,107 L 79,114"/>
+  <!-- gallardete en lo alto -->
+  <path class="ship" d="M 80,83 L 91,86 L 80,90 Z"/>
+  <!-- olas -->
+  <path class="ship-line" d="M 50,132 Q 65,128 80,132 Q 95,136 110,132"/>
+
+  <!-- barco pirata derecha (espejo) -->
+  <!-- casco -->
+  <path class="ship" d="M 575,126 L 581,116 L 619,116 L 625,126 Q 600,134 575,126 Z"/>
+  <!-- mástil -->
+  <line class="ship-line" x1="600" y1="116" x2="600" y2="83"/>
+  <!-- vela principal (izquierda del mástil, espejo) -->
+  <path class="ship-line" d="M 599,87 L 579,110 L 599,116"/>
+  <!-- vela de proa (derecha, más pequeña, espejo) -->
+  <path class="ship-line" d="M 601,92 L 619,107 L 601,114"/>
+  <!-- gallardete en lo alto -->
+  <path class="ship" d="M 600,83 L 589,86 L 600,90 Z"/>
+  <!-- olas -->
+  <path class="ship-line" d="M 570,132 Q 585,128 600,132 Q 615,136 630,132"/>
 
   <g class="glow">
     <text class="ascii ascii-row r1" x="268" y="62">&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2557;  &#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2557;</text>
